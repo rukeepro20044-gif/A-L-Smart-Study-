@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="si" id="html-root" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A/L AI Smart Study Platform - 2026 Syllabus Structure</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent; 
+            -webkit-touch-callout: none;
+        }
+        
+        .no-select {
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .glass-dark {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.75));
+            backdrop-filter: blur(50px) saturate(180%);
+            -webkit-backdrop-filter: blur(50px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8), 
+                        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+                        inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .glass-light {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(238, 242, 255, 0.65));
+            backdrop-filter: blur(50px) saturate(200%);
+            -webkit-backdrop-filter: blur(50px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 25px 50px -12px rgba(100, 116, 139, 0.18), 
+                        inset 0 1px 3px rgba(255, 255, 255, 0.9),
+                        inset 0 -2px 5px rgba(203, 213, 225, 0.5);
+        }
+        .neon-3d-btn {
+            position: relative;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.35), 
+                        0 0 15px rgba(6, 182, 212, 0.2), 
+                        inset 0 1px 1px rgba(255, 255, 255, 0.4), 
+                        inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (hover: hover) {
+            .neon-3d-btn:hover {
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 0 30px rgba(6, 182, 212, 0.8), 
+                            0 15px 30px -5px rgba(6, 182, 212, 0.5), 
+                            inset 0 1px 2px rgba(255, 255, 255, 0.7);
+            }
+            .stream-card:hover {
+                transform: translateY(-5px) scale(1.01);
+                box-shadow: 0 0 35px rgba(6, 182, 212, 0.4), 
+                            0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        .stream-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .bg-dark-mesh {
+            background: radial-gradient(at 10% 10%, rgb(15, 23, 42) 0px, transparent 50%),
+                        radial-gradient(at 90% 10%, rgb(49, 16, 66) 0px, transparent 50%),
+                        radial-gradient(at 50% 90%, rgb(8, 47, 73) 0px, transparent 50%),
+                        rgb(3, 7, 18);
+        }
+        .bg-light-mesh {
+            background: radial-gradient(at 10% 10%, rgb(224, 242, 254) 0px, transparent 50%),
+                        radial-gradient(at 90% 10%, rgb(243, 232, 255) 0px, transparent 50%),
+                        radial-gradient(at 50% 90%, rgb(240, 253, 250) 0px, transparent 50%),
+                        rgb(248, 250, 252);
+        }
+    </style>
+</head>
+<body id="body-bg" class="bg-dark-mesh text-slate-100 min-h-screen flex flex-col justify-between transition-colors duration-500 no-select">
+
+    <div class="fixed top-1/4 left-1/4 w-72 h-72 md:w-96 md:h-96 bg-cyan-500/25 rounded-full blur-[140px] pointer-events-none"></div>
+    <div class="fixed bottom-1/4 right-1/4 w-72 h-72 md:w-96 md:h-96 bg-purple-500/25 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <!-- Header -->
+    <header id="navbar" class="p-3 md:p-4 px-4 md:px-6 glass-dark border-b border-white/10 flex justify-between items-center sticky top-0 z-50 transition-colors duration-500">
+        <div class="flex items-center gap-2 cursor-pointer" onclick="goHome()">
+            <span class="text-lg md:text-xl font-extrabold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent drop-shadow-md">A/L Smart Study 🚀</span>
+        </div>
+        <div class="flex items-center gap-2 md:gap-3">
+            <button onclick="toggleLanguage()" id="lang-btn" class="text-xs font-semibold px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 hover:bg-cyan-500/35 transition shadow-lg neon-3d-btn">
+                සිංහල / ENG
+            </button>
+            <button onclick="toggleTheme()" class="p-2 md:p-2.5 rounded-full bg-white/10 dark:bg-slate-800/80 text-slate-200 hover:scale-105 transition border border-white/20 shadow-lg neon-3d-btn">
+                <svg id="theme-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m3.343-5.657l-.707-.707m12.728 12.728l-.707-.707M6.343 17.657l-.707.707M17.657 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-4xl mx-auto p-4 md:p-6 w-full my-auto space-y-4 md:space-y-6 relative z-10">
+        <div id="banner-box" class="glass-dark p-5 md:p-8 rounded-3xl relative overflow-hidden shadow-2xl transition-colors duration-500">
+            <h1 id="banner-title" class="text-lg md:text-2xl font-bold mb-2 text-cyan-400 drop-shadow-sm">ලංකාවේ A/L ළමයින් සඳහාම AI මත පදනම් වූ 2026 නවතම Quiz අභියෝගය</h1>
+            <p id="banner-desc" class="text-xs md:text-sm text-slate-300 dark:text-slate-300 leading-relaxed font-normal">
+                ඔබේ විෂය ධාරාව (Stream) තෝරා අදාළ විෂයයන් සහ 12/13 ශ්‍රේණිවල පාඩම්වලට අදාළ ප්‍රශ්න වෙත පිවිසෙන්න. (සෑම පාඩමකටම එකවර ප්‍රශ්න 20ක බැංකුවක් ජනනය වේ)
+            </p> 
+        </div>
+
+        <div class="flex justify-between items-center px-1">
+            <h2 id="section-heading" class="text-xs font-bold tracking-wider text-slate-400 dark:text-slate-400 uppercase">විෂය ධාරා තෝරන්න (Select Stream)</h2>
+            <button id="back-btn" onclick="goBack()" class="hidden text-xs px-3.5 py-1.5 md:px-4 md:py-2 rounded-full bg-white/10 dark:bg-slate-800/50 hover:bg-white/20 border border-white/25 transition flex items-center gap-1 font-semibold neon-3d-btn">← ආපසු (Back)</button>
+        </div>
+
+        <div id="content-container" class="space-y-4">
+            <!-- Dynamic Content -->
+        </div>
+    </main>
+
+    <footer id="footer" class="p-4 text-center text-xs text-slate-400 dark:text-slate-400 glass-dark border-t border-white/10 mt-6 relative z-10 transition-colors duration-500">
+        © 2026 A/L Quiz Study Platform. Official Syllabus Index & Structure.
+    </footer>
+
+    <script>
+       const database = {
+            "Physical Science": {
+                titleSi: "භෞතික විද්‍යා අංශය", titleEn: "Physical Science Stream", color: "cyan", icon: "⚡",
+                subjects: {
+                    "Physics": {
+                        titleSi: "භෞතික විද්‍යාව (Physics)", titleEn: "Physics",
+                        grades: {
+                            "Grade 12": [
+                                { id: "p1", nameSi: "මිනුම් (Measurements)", nameEn: "Measurements" },
+                                { id: "p2", nameSi: "යාන්ත්‍ර විද්‍යාව (Mechanics)", nameEn: "Mechanics" },
+                                { id: "p3", nameSi: "ද්‍රව්‍යවල යාන්ත්‍රික ගුණ (Mechanical Properties of Matter)", nameEn: "Mechanical Properties of Matter" },
+                                { id: "p4", nameSi: "දෝලන සහ තරංග (Oscillations and Waves)", nameEn: "Oscillations and Waves" },
+                                { id: "p5", nameSi: "තාප විද්‍යාව (Thermal Physics)", nameEn: "Thermal Physics" }
+                            ],
+                            "Grade 13": [
+                                { id: "p6", nameSi: "ධාරා විදුලිය (Current Electricity)", nameEn: "Current Electricity" },
+                                { id: "p7", nameSi: "විද්‍යුත් ක්ෂේත්‍ර (Electric Fields)", nameEn: "Electric Fields" },
+                                { id: "p8", nameSi: "චුම්බක ක්ෂේත්‍ර (Magnetic Fields)", nameEn: "Magnetic Fields" },
+                                { id: "p9", nameSi: "ඉලෙක්ට්‍රොනික විද්‍යාව (Electronics)", nameEn: "Electronics" },
+                                { id: "p10", nameSi: "පදාර්ථයේ සහ විකිරණවල ද්විත්ව ස්වභාවය (Dual Nature of Matter and Radiation)", nameEn: "Dual Nature of Matter and Radiation" },
+                                { id: "p11", nameSi: "පරමාණුක භෞතික විද්‍යාව සහ ඉලෙක්ට්‍රොනික්ස් අතිරේක (Atomic Physics)", nameEn: "Atomic Physics" }
+                            ]
+                        }
+                    },
+                    "Combined Mathematics": {
+                        titleSi: "සංයුක්ත ගණිතය (Combined Mathematics)", titleEn: "Combined Mathematics",
+                        grades: {
+                            "Grade 12 & 13 (Pure)": [
+                                { id: "m1", nameSi: "සංඛ්‍යා ආකෘති සහ අසමානතා (Numbers, Sets and Inequalities)", nameEn: "Numbers, Sets and Inequalities" },
+                                { id: "m2", nameSi: "ත්‍රිකෝණමිතිය (Trigonometry)", nameEn: "Trigonometry" },
+                                { id: "m3", nameSi: "ශ්‍රිත (Functions)", nameEn: "Functions" },
+                                { id: "m4", nameSi: "සීමාව සහ අඛණ්ඩතාව (Limits and Continuity)", nameEn: "Limits and Continuity" },
+                                { id: "m5", nameSi: "අවකලනය (Differentiation) සහ එහි යෙදුම්", nameEn: "Differentiation and Applications" },
+                                { id: "m6", nameSi: "සමාකලනය (Integration) සහ එහි යෙදුම්", nameEn: "Integration and Applications" },
+                                { id: "m7", nameSi: "ද්විපද ප්‍රසාරණය (Binomial Expansion)", nameEn: "Binomial Expansion" },
+                                { id: "m8", nameSi: "සංකීර්ණ සංඛ්‍යා (Complex Numbers)", nameEn: "Complex Numbers" },
+                                { id: "m9", nameSi: "න්‍යාස සහ නිර්ණායක (Matrices and Determinants)", nameEn: "Matrices and Determinants" },
+                                { id: "m10", nameSi: "සදෛශික (Vectors)", nameEn: "Vectors" }
+                            ],
+                            "Grade 12 & 13 (Applied)": [
+                                { id: "am1", nameSi: "බල පද්ධති (Systems of Forces)", nameEn: "Systems of Forces" },
+                                { id: "am2", nameSi: "ඝර්ෂණය (Friction)", nameEn: "Friction" },
+                                { id: "am3", nameSi: "සරල රේඛීය චලිතය (Rectilinear Motion)", nameEn: "Rectilinear Motion" },
+                                { id: "am4", nameSi: "ප්‍රක්ෂේප්‍ය (Projectiles)", nameEn: "Projectiles" },
+                                { id: "am5", nameSi: "නිව්ටන් නියම සහ චලිත නීති (Newton's Laws of Motion)", nameEn: "Newton's Laws of Motion" },
+                                { id: "am6", nameSi: "ස්කන්ධ කේන්ද්‍රය (Centre of Mass)", nameEn: "Centre of Mass" },
+                                { id: "am7", nameSi: "වැඩ, ශක්තිය සහ ක්ෂමතාව (Work, Energy and Power)", nameEn: "Work, Energy and Power" },
+                                { id: "am8", nameSi: "සංඛ්‍යානය සහ සම්භාවිතාව (Statistics and Probability)", nameEn: "Statistics and Probability" }
+                            ]
+                        }
+                    },
+                    "Chemistry": {
+                        titleSi: "රසායන විද්‍යාව (Chemistry)", titleEn: "Chemistry",
+                        grades: {
+                            "Grade 12": [
+                                { id: "c1", nameSi: "පරමාණුක ව්‍යුහය (Atomic Structure)", nameEn: "Atomic Structure" },
+                                { id: "c2", nameSi: "ආවර්තිතා ආකෘතිය සහ ආවර්තිතා ගුණ (Periodic Table and Periodic Properties)", nameEn: "Periodic Table and Periodic Properties" },
+                                { id: "c3", nameSi: "රසායනික බැඳීම් සහ ව්‍යුහය (Chemical Bonding and Structure)", nameEn: "Chemical Bonding and Structure" },
+                                { id: "c4", nameSi: "රසායනික ගණනය කිරීම් (Chemical Calculations)", nameEn: "Chemical Calculations" },
+                                { id: "c5", nameSi: "ශක්ති විද්‍යාව (Energetics)", nameEn: "Energetics" },
+                                { id: "c6", nameSi: "පරමාණුක විද්‍යාව සහ වායු ස්වභාවය (Gaseous State of Matter)", nameEn: "Gaseous State of Matter" }
+                            ],
+                            "Grade 13": [
+                                { id: "c7", nameSi: "රසායනික සාම්‍යය (Chemical Equilibrium)", nameEn: "Chemical Equilibrium" },
+                                { id: "c8", nameSi: "විද්‍යුත් රසායනය (Electrochemistry)", nameEn: "Electrochemistry" },
+                                { id: "c9", nameSi: "ජල විද්‍යාව සහ ද්‍රාවණ (Aqueous Solutions)", nameEn: "Aqueous Solutions" },
+                                { id: "c10", nameSi: "හැඳින්වීම සහ කාබනික රසායන මූලික සංකල්ප (Introduction to Organic Chemistry)", nameEn: "Introduction to Organic Chemistry" },
+                                { id: "c11", nameSi: "හයිඩ්‍රොකාබන සහ ඔක්සිජන් අඩංගු කාබනික සංයෝග (Hydrocarbons and Oxygen-containing Compounds)", nameEn: "Hydrocarbons and Oxygen Compounds" },
+                                { id: "c12", nameSi: "නයිට්‍රජන් අඩංගු කාබනික සංයෝග සහ පොලිමර් (Nitrogen Compounds and Polymers)", nameEn: "Nitrogen Compounds and Polymers" },
+                                { id: "c13", nameSi: "කාර්මික රසායනය සහ පරිසර රසායනය (Industrial and Environmental Chemistry)", nameEn: "Industrial and Environmental Chemistry" }
+                            ]
+                        }
+                    },
+                    "ICT": {
+                        titleSi: "තොරතුරු සහ සන්නිවේදන තාක්ෂණය (ICT)", titleEn: "ICT",
+                        grades: {
+                            "Grade 12": [
+                                { id: "ict1", nameSi: "පරිගණක පද්ධතියක පරිණාමය සහ මූලික අංග (Evolution of Computers)", nameEn: "Evolution of Computers" },
+                                { id: "ict2", nameSi: "දත්ත නිරූපණය සහ සංඛ්‍යා පද්ධති (Data Representation)", nameEn: "Data Representation & Number Systems" },
+                                { id: "ict3", nameSi: "දත්ත සන්නිවේදනය සහ ජාලකරණය (Networking)", nameEn: "Data Communication and Networking" },
+                                { id: "ict4", nameSi: "පද්ධති විශ්ලේෂණය සහ නිර්මාණය (System Analysis & Design)", nameEn: "System Analysis and Design" },
+                                { id: "ict5", nameSi: "දත්ත සමුදා කළමනාකරණ පද්ධති (DBMS)", nameEn: "Database Management Systems (DBMS)" },
+                                { id: "ict6", nameSi: "වෙබ් නිර්මාණකරණය (HTML, CSS, JavaScript)", nameEn: "Web Design (HTML, CSS, JS)" }
+                            ],
+                            "Grade 13": [
+                                { id: "ict7", nameSi: "ක්‍රමලේඛනය (Programming Concepts - Python)", nameEn: "Programming Concepts (Python)" },
+                                { id: "ict8", nameSi: "මෘදුකාංග ඉංජිනේරු විද්‍යාව (Software Engineering)", nameEn: "Software Engineering" },
+                                { id: "ict9", nameSi: "අන්තර්ජාල තාක්ෂණය සහ නැගී එන තාක්ෂණයන් (IoT, AI, Cloud)", nameEn: "Internet Tech & Emerging Tech (IoT, AI)" },
+                                { id: "ict10", nameSi: "තොරතුරු ආරක්ෂණය සහ සදාචාරය (Information Security and Ethics)", nameEn: "Information Security and Ethics" }
+                            ]
+                        }
+                    }
+                }
+            },
+            "Bio Science": {
+                titleSi: "ජීව විද්‍යා අංශය", titleEn: "Bio Science Stream", color: "emerald", icon: "🧬",
+                subjects: {
+                    "Biology": {
+                        titleSi: "ජීව විද්‍යාව (Biology)", titleEn: "Biology",
+                        grades: {
+                            "Grade 12": [
+                                { id: "b1", nameSi: "ජීවයේ විවිධත්වය (Diversity of Life)", nameEn: "Diversity of Life" },
+                                { id: "b2", nameSi: "සෛලීය හා අණුක ජීව විද්‍යාව (Cellular and Molecular Biology)", nameEn: "Cellular and Molecular Biology" },
+                                { id: "b3", nameSi: "ශාක දේහ ක්‍රියාවලිය (Plant Biology)", nameEn: "Plant Biology" },
+                                { id: "b4", nameSi: "සත්ව දේහ ක්‍රියාවලිය - I (Animal Biology - Part I)", nameEn: "Animal Biology - Part I" }
+                            ],
+                            "Grade 13": [
+                                { id: "b5", nameSi: "සත්ව දේහ ක්‍රියාවලිය - II (Animal Biology - Part II)", nameEn: "Animal Biology - Part II" },
+                                { id: "b6", nameSi: "ජාන විද්‍යාව (Genetics)", nameEn: "Genetics" },
+                                { id: "b7", nameSi: "පරිණාමය සහ පාරිසරික ජීව විද්‍යාව (Evolution and Environmental Biology)", nameEn: "Evolution and Environmental Biology" },
+                                { id: "b8", nameSi: "ව්‍යවහාරික ජීව විද්‍යාව (Applied Biology)", nameEn: "Applied Biology" }
+                            ]
+                        }
+                    },
+                    "Chemistry": {
+                        titleSi: "රසායන විද්‍යාව (Chemistry)", titleEn: "Chemistry",
+                        grades: {
+                            "Grade 12": [
+                                { id: "c1", nameSi: "පරමාණුක ව්‍යුහය (Atomic Structure)", nameEn: "Atomic Structure" },
+                                { id: "c2", nameSi: "ආවර්තිතා ආකෘතිය සහ ආවර්තිතා ගුණ (Periodic Table and Periodic Properties)", nameEn: "Periodic Table and Periodic Properties" },
+                                { id: "c3", nameSi: "රසායනික බැඳීම් සහ ව්‍යුහය (Chemical Bonding and Structure)", nameEn: "Chemical Bonding and Structure" },
+                                { id: "c4", nameSi: "රසායනික ගණනය කිරීම් (Chemical Calculations)", nameEn: "Chemical Calculations" },
+                                { id: "c5", nameSi: "ශක්ති විද්‍යාව (Energetics)", nameEn: "Energetics" },
+                                { id: "c6", nameSi: "පරමාණුක විද්‍යාව සහ වායු ස්වභාවය (Gaseous State of Matter)", nameEn: "Gaseous State of Matter" }
+                            ],
+                            "Grade 13": [
+                                { id: "c7", nameSi: "රසායනික සාම්‍යය (Chemical Equilibrium)", nameEn: "Chemical Equilibrium" },
+                                { id: "c8", nameSi: "විද්‍යුත් රසායනය (Electrochemistry)", nameEn: "Electrochemistry" },
+                                { id: "c9", nameSi: "ජල විද්‍යාව සහ ද්‍රාවණ (Aqueous Solutions)", nameEn: "Aqueous Solutions" },
+                                { id: "c10", nameSi: "හැඳින්වීම සහ කාබනික රසායන මූලික සංකල්ප (Introduction to Organic Chemistry)", nameEn: "Introduction to Organic Chemistry" },
+                                { id: "c11", nameSi: "හයිඩ්‍රොකාබන සහ ඔක්සිජන් අඩංගු කාබනික සංයෝග (Hydrocarbons and Oxygen-containing Compounds)", nameEn: "Hydrocarbons and Oxygen Compounds" },
+                                { id: "c12", nameSi: "නයිට්‍රජන් අඩංගු කාබනික සංයෝග සහ පොලිමර් (Nitrogen Compounds and Polymers)", nameEn: "Nitrogen Compounds and Polymers" },
+                                { id: "c13", nameSi: "කාර්මික රසායනය සහ පරිසර රසායනය (Industrial and Environmental Chemistry)", nameEn: "Industrial and Environmental Chemistry" }
+                            ]
+                        }
+                    },
+                    "Physics": {
+                        titleSi: "භෞතික විද්‍යාව (Physics)", titleEn: "Physics",
+                        grades: {
+                            "Grade 12": [
+                                { id: "p1", nameSi: "මිනුම් (Measurements)", nameEn: "Measurements" },
+                                { id: "p2", nameSi: "යාන්ත්‍ර විද්‍යාව (Mechanics)", nameEn: "Mechanics" },
+                                { id: "p3", nameSi: "ද්‍රව්‍යවල යාන්ත්‍රික ගුණ (Mechanical Properties of Matter)", nameEn: "Mechanical Properties of Matter" },
+                                { id: "p4", nameSi: "දෝලන සහ තරංග (Oscillations and Waves)", nameEn: "Oscillations and Waves" },
+                                { id: "p5", nameSi: "තාප විද්‍යාව (Thermal Physics)", nameEn: "Thermal Physics" }
+                            ],
+                            "Grade 13": [
+                                { id: "p6", nameSi: "ධාරා විදුලිය (Current Electricity)", nameEn: "Current Electricity" },
+                                { id: "p7", nameSi: "විද්‍යුත් ක්ෂේත්‍ර (Electric Fields)", nameEn: "Electric Fields" },
+                                { id: "p8", nameSi: "චුම්බක ක්ෂේත්‍ර (Magnetic Fields)", nameEn: "Magnetic Fields" },
+                                { id: "p9", nameSi: "ඉලෙක්ට්‍රොනික විද්‍යාව (Electronics)", nameEn: "Electronics" },
+                                { id: "p10", nameSi: "පදාර්ථයේ සහ විකිරණවල ද්විත්ව ස්වභාවය (Dual Nature of Matter and Radiation)", nameEn: "Dual Nature of Matter and Radiation" },
+                                { id: "p11", nameSi: "පරමාණුක භෞතික විද්‍යාව සහ ඉලෙක්ට්‍රොනික්ස් අතිරේක (Atomic Physics)", nameEn: "Atomic Physics" }
+                            ]
+                        }
+                    },
+                    "Agriculture": {
+                        titleSi: "කෘෂි විද්‍යාව (Agriculture)", titleEn: "Agriculture",
+                        grades: {
+                            "Grade 12": [
+                                { id: "ag1", nameSi: "කෘෂිකර්මාන්තයට හැඳින්වීම සහ ශ්‍රී ලංකාවේ කෘෂිකර්මාන්තය", nameEn: "Introduction to Agriculture" },
+                                { id: "ag2", nameSi: "කෘෂි පරිසරය සහ දේශගුණික සාධක", nameEn: "Agro-environment & Climate" },
+                                { id: "ag3", nameSi: "පාංශු විද්‍යාව සහ ශාක පෝෂණය", nameEn: "Soil Science and Plant Nutrition" },
+                                { id: "ag4", nameSi: "බෝග නිෂ්පාදන තාක්ෂණය (ක්ෂේත්‍ර බෝග, උද්‍යාන බෝග)", nameEn: "Crop Production Technology" },
+                                { id: "ag5", nameSi: "සත්ව නිෂ්පාදන තාක්ෂණය (කිරි, කුකුළු, එළුවන් සහ ඌරන්)", nameEn: "Animal Production Technology" }
+                            ],
+                            "Grade 13": [
+                                { id: "ag6", nameSi: "බෝග ආරක්ෂණ තාක්ෂණය (පළිබෝධ, රෝග සහ නල්ක පාලනය)", nameEn: "Crop Protection Technology" },
+                                { id: "ag7", nameSi: "ජල කළමනාකරණය සහ වාරි තාක්ෂණය", nameEn: "Water Management & Irrigation" },
+                                { id: "ag8", nameSi: "කෘෂි යන්ත්‍රෝපකරණ සහ බලශක්තිය", nameEn: "Agricultural Machinery & Energy" },
+                                { id: "ag9", nameSi: "පශ්චාත් අස්වනු තාක්ෂණය සහ ආහාර සැකසීම", nameEn: "Post-harvest Technology" },
+                                { id: "ag10", nameSi: "කෘෂි ව්‍යවසායකත්වය, අලෙවිකරණය සහ ආර්ථික විද්‍යාව", nameEn: "Agri-entrepreneurship & Economics" }
+                            ]
+                        }
+                    }
+                }
+            },
+           "Commerce": {
+                titleSi: "වාණිජ අංශය", titleEn: "Commerce Stream", color: "amber", icon: "📈",
+                subjects: {
+                    "Accounting": {
+                        titleSi: "මූල්‍ය ගිණුම්කරණය (Financial Accounting)", titleEn: "Financial Accounting",
+                        grades: {
+                            "Grade 12": [
+                                { id: "acc1", nameSi: "ගිණුම්කරණයට හැඳින්වීම සහ මූලික සංකල්ප", nameEn: "Introduction to Accounting" },
+                                { id: "acc2", nameSi: "මූලික ගිණුම්කරණ චක්‍රය (Journal, Ledger, Trial Balance)", nameEn: "Basic Accounting Cycle" },
+                                { id: "acc3", nameSi: "බැංකු ශේෂ ගැලපුම් ප්‍රකාශය (Bank Reconciliation Statement)", nameEn: "Bank Reconciliation Statement" },
+                                { id: "acc4", nameSi: "ආදායම් ප්‍රකාශය සහ මූල්‍ය තත්ත්ව ප්‍රකාශය (Financial Statements)", nameEn: "Financial Statements" },
+                                { id: "acc5", nameSi: "අසම්පූර්ණ වාර්තා (Incomplete Records)", nameEn: "Incomplete Records" }
+                            ],
+                            "Grade 13": [
+                                { id: "acc6", nameSi: "හවුල් ව්‍යාපාර ගිණුම්කරණය (Partnership Accounts)", nameEn: "Partnership Accounts" },
+                                { id: "acc7", nameSi: "සමාගම් ගිණුම්කරණය (Company Accounts)", nameEn: "Company Accounts" },
+                                { id: "acc8", nameSi: "නිෂ්පාදන ගිණුම්කරණය (Manufacturing Accounts)", nameEn: "Manufacturing Accounts" },
+                                { id: "acc9", nameSi: "ලාභ නොලබන සංවිධාන ගිණුම් (Non-Profit Organizations)", nameEn: "Non-Profit Organizations" },
+                                { id: "acc10", nameSi: "මූල්‍ය ප්‍රකාශ විශ්ලේෂණය සහ අර්ථ නිරූපණය (Financial Statement Analysis)", nameEn: "Financial Statement Analysis" }
+                            ]
+                        }
+                    },
+                    "Business Studies": {
+                        titleSi: "ව්‍යාපාර අධ්‍යයනය (Business Studies)", titleEn: "Business Studies",
+                        grades: {
+                            "Grade 12": [
+                                { id: "bs1", nameSi: "ව්‍යාපාර ස්වභාවය සහ පරිසරය (Nature and Environment of Business)", nameEn: "Nature and Environment of Business" },
+                                { id: "bs2", nameSi: "ව්‍යාපාර ආරම්භ කිරීම සහ අභියෝග (Starting a Business)", nameEn: "Starting a Business" },
+                                { id: "bs3", nameSi: "ව්‍යාපාර සංවිධාන ආකාර (Forms of Business Organizations)", nameEn: "Forms of Business Organizations" },
+                                { id: "bs4", nameSi: "ව්‍යාපාර මූල්‍යකරණය (Business Finance)", nameEn: "Business Finance" },
+                                { id: "bs5", nameSi: "මිනිස් සම්පත් කළමනාකරණය (Human Resource Management)", nameEn: "Human Resource Management" }
+                            ],
+                            "Grade 13": [
+                                { id: "bs6", nameSi: "අලෙවිකරණ කළමනාකරණය (Marketing Management)", nameEn: "Marketing Management" },
+                                { id: "bs7", nameSi: "මෙහෙයුම් කළමනාකරණය (Operations Management)", nameEn: "Operations Management" },
+                                { id: "bs8", nameSi: "ව්‍යාපාර ආචාරධර්ම සහ සමාජ වගකීම (Business Ethics and Social Responsibility)", nameEn: "Business Ethics & Social Responsibility" },
+                                { id: "bs9", nameSi: "ශ්‍රී ලංකාවේ ආර්ථික සංවර්ධනය සහ ව්‍යාපාර දායකත්වය", nameEn: "Economic Development & Contribution" },
+                                { id: "bs10", nameSi: "ව්‍යාපාර සැලසුම්කරණය සහ උපායමාර්ග (Business Planning and Strategies)", nameEn: "Business Planning and Strategies" }
+                            ]
+                        }
+                    },
+                    "Economics": {
+                        titleSi: "ආර්ථික විද්‍යාව (Economics)", titleEn: "Economics",
+                        grades: {
+                            "Grade 12": [
+                                { id: "eco1", nameSi: "මූලික ආර්ථික ගැටලු සහ ක්‍රමවේද (Basic Economic Concepts)", nameEn: "Basic Economic Concepts" },
+                                { id: "eco2", nameSi: "ඉල්ලුම සහ සැපයුම (Demand and Supply)", nameEn: "Demand and Supply" },
+                                { id: "eco3", nameSi: "පාරිභෝගික හැසිරීම සහ උපයෝගීතාව (Consumer Behavior)", nameEn: "Consumer Behavior and Utility" },
+                                { id: "eco4", nameSi: "නිෂ්පාදන න්‍යාය සහ පිරිවැය (Production Theory and Costs)", nameEn: "Production Theory and Costs" },
+                                { id: "eco5", nameSi: "වෙළඳපල ව්‍යුහයන් (Market Structures)", nameEn: "Market Structures" }
+                            ],
+                            "Grade 13": [
+                                { id: "eco6", nameSi: "ජාතික ආදායම් ගිණුම්කරණය (National Income Accounting)", nameEn: "National Income Accounting" },
+                                { id: "eco7", nameSi: "කේන්සියානු ආර්ථික ආකෘතිය සහ මූල්‍ය ප්‍රතිපත්ති (Keynesian Model and Monetary Policy)", nameEn: "Keynesian Model & Monetary Policy" },
+                                { id: "eco8", nameSi: "මූල්‍ය අංශය සහ බැංකු පද්ධතිය (Financial Sector and Banking)", nameEn: "Financial Sector and Banking" },
+                                { id: "eco9", nameSi: "ජාත්‍යන්තර වෙළඳාම සහ ගෙවුම් ශේෂය (International Trade and Balance of Payments)", nameEn: "International Trade & BOP" },
+                                { id: "eco10", nameSi: "ශ්‍රී ලංකා ආර්ථිකය - වර්ධනය, සංවර්ධනය සහ වත්මන් ගැටලු", nameEn: "Sri Lankan Economy" }
+                            ]
+                        }
+                    },
+                    "ICT": {
+                        titleSi: "තොරතුරු සහ සන්නිවේදන තාක්ෂණය (ICT)", titleEn: "ICT",
+                        grades: {
+                            "Grade 12": [
+                                { id: "ict1", nameSi: "පරිගණක පද්ධතියක පරිණාමය සහ මූලික අංග (Evolution of Computers)", nameEn: "Evolution of Computers" },
+                                { id: "ict2", nameSi: "දත්ත නිරූපණය සහ සංඛ්‍යා පද්ධති (Data Representation)", nameEn: "Data Representation & Number Systems" },
+                                { id: "ict3", nameSi: "දත්ත සන්නිවේදනය සහ ජාලකරණය (Networking)", nameEn: "Data Communication and Networking" },
+                                { id: "ict4", nameSi: "පද්ධති විශ්ලේෂණය සහ නිර්මාණය (System Analysis & Design)", nameEn: "System Analysis and Design" },
+                                { id: "ict5", nameSi: "දත්ත සමුදා කළමනාකරණ පද්ධති (DBMS)", nameEn: "Database Management Systems (DBMS)" },
+                                { id: "ict6", nameSi: "වෙබ් නිර්මාණකරණය (HTML, CSS, JavaScript)", nameEn: "Web Design (HTML, CSS, JS)" }
+                            ],
+                            "Grade 13": [
+                                { id: "ict7", nameSi: "ක්‍රමලේඛනය (Programming Concepts - Python)", nameEn: "Programming Concepts (Python)" },
+                                { id: "ict8", nameSi: "මෘදුකාංග ඉංජිනේරු විද්‍යාව (Software Engineering)", nameEn: "Software Engineering" },
+                                { id: "ict9", nameSi: "අන්තර්ජාල තාක්ෂණය සහ නැගී එන තාක්ෂණයන් (IoT, AI, Cloud)", nameEn: "Internet Tech & Emerging Tech (IoT, AI)" },
+                                { id: "ict10", nameSi: "තොරතුරු ආරක්ෂණය සහ සදාචාරය (Information Security and Ethics)", nameEn: "Information Security and Ethics" }
+                            ]
+                        }
+                    }
+                }
+            },
+            "Technology": {
+                titleSi: "තාක්ෂණවේදය අංශය", titleEn: "Technology Stream", color: "purple", icon: "🛠️",
+                subjects: {
+                    "ET": {
+                        titleSi: "ඉංජිනේරු තාක්ෂණවේදය (ET)", titleEn: "Engineering Technology",
+                        grades: {
+                            "Grade 12": [
+                                { id: "et1", nameSi: "ඉංජිනේරු තාක්ෂණවේදයට හැඳින්වීමක්", nameEn: "Introduction to ET" },
+                                { id: "et2", nameSi: "මූලික යාන්ත්‍රික චලන තාක්ෂණය", nameEn: "Basic Mechanical Motion Technology" },
+                                { id: "et3", nameSi: "මූලික විදුලි තාක්ෂණය සහ ගෘහස්ථ විදුලි කාර්යයන්", nameEn: "Basic Electrical Technology & Domestic Works" },
+                                { id: "et4", nameSi: "මූලික ඉදිකිරීම් තාක්ෂණය", nameEn: "Basic Construction Technology" },
+                                { id: "et5", nameSi: "මූලික නිෂ්පාදන තාක්ෂණය සහ එකලස් කිරීමේ ක්‍රමවේද", nameEn: "Basic Production & Assembly" },
+                                { id: "et6", nameSi: "ඉංජිනේරු රේඛීය චිත්‍රක ශිල්පය", nameEn: "Engineering Drawing" },
+                                { id: "et7", nameSi: "මිනුම් සහ ඒකක", nameEn: "Measurements and Units" },
+                                { id: "et8", nameSi: "චලනය සහ බල සම්ප්‍රේෂණ පාදක", nameEn: "Motion and Power Transmission" },
+                                { id: "et9", nameSi: "තාක්ෂණික කටයුතු සඳහා සෞඛ්‍යය සහ ආරක්ෂාව", nameEn: "Health and Safety for Technical Works" }
+                            ],
+                            "Grade 13": [
+                                { id: "et10", nameSi: "විදුලි යන්ත්‍ර සහ බල පද්ධති", nameEn: "Electrical Machines and Power Systems" },
+                                { id: "et11", nameSi: "මූලික ඉලෙක්ට්‍රොනික තාක්ෂණය සහ භාවිත", nameEn: "Basic Electronic Technology & Uses" },
+                                { id: "et12", nameSi: "ගෘහස්ථ ජල සැපයුම සහ අපද්‍රව්‍ය ඉවත් කිරීම", nameEn: "Water Supply and Wastewater Disposal" },
+                                { id: "et13", nameSi: "තරල යන්ත්‍ර - ජල පොම්ප සහ ටර්බයින", nameEn: "Fluid Machines - Pumps and Turbines" },
+                                { id: "et14", nameSi: "ඉංජිනේරු සම්මුතීන් සහ තත්ව සහතික පද්ධති", nameEn: "Engineering Conventions & Quality Systems" },
+                                { id: "et15", nameSi: "භූ මිනින්දෝරුව විද්‍යාව", nameEn: "Surveying Science" },
+                                { id: "et16", nameSi: "ඇස්තමේන්තු සහ ප්‍රමාණ බිල්පත් සකස් කිරීම", nameEn: "Estimates and Bill of Quantities" },
+                                { id: "et17", nameSi: "ව්‍යවසායකත්වය සහ කළමනාකරණය", nameEn: "Entrepreneurship and Management" }
+                            ]
+                        }
+                    },
+                    "BST": {
+                        titleSi: "ජෛව පද්ධති තාක්ෂණවේදය (BST)", titleEn: "Bio-Systems Technology",
+                        grades: {
+                            "Grade 12": [
+                                { id: "bst1", nameSi: "ජීව පද්ධති තාක්ෂණවේදයට හැඳින්වීමක්", nameEn: "Introduction to BST" },
+                                { id: "bst2", nameSi: "සෛලය, ජීව අණු සහ ක්ෂුද්‍රජීව විද්‍යාව", nameEn: "Cell, Biomolecules & Microbiology" },
+                                { id: "bst3", nameSi: "ශාක හා සත්ව පටක සහ ප්‍රජනනය", nameEn: "Plant/Animal Tissues & Reproduction" },
+                                { id: "bst4", nameSi: "පාංශු විද්‍යාව සහ ශාක පෝෂණය", nameEn: "Soil Science and Plant Nutrition" },
+                                { id: "bst5", nameSi: "කෘෂි පරිසරය සහ දේශගුණය", nameEn: "Agro-environment and Climate" },
+                                { id: "bst6", nameSi: "බෝග නිෂ්පාදන තාක්ෂණය (ක්ෂේත්‍ර හා උද්‍යාන බෝග)", nameEn: "Crop Production Technology" },
+                                { id: "bst7", nameSi: "සත්ව නිෂ්පාදන තාක්ෂණය (කිරි, කුකුළු සහ අනෙකුත් සතුන්)", nameEn: "Animal Production Technology" },
+                                { id: "bst8", nameSi: "ජලජ සම්පත් සහ මත්ස්‍ය නිෂ්පාදන තාක්ෂණය", nameEn: "Aquatic Resources & Fish Production" },
+                                { id: "bst9", nameSi: "ආහාර ද්‍රව්‍යවල ස්වභාවය සහ සංයුතිය", nameEn: "Nature and Composition of Foods" }
+                            ],
+                            "Grade 13": [
+                                { id: "bst10", nameSi: "බෝග ආරක්ෂණ තාක්ෂණය (පළිබෝධ සහ රෝග පාලනය)", nameEn: "Crop Protection Technology" },
+                                { id: "bst11", nameSi: "පශ්චාත් අස්වනු තාක්ෂණය සහ ආහාර සැකසීම", nameEn: "Post-harvest Tech & Food Processing" },
+                                { id: "bst12", nameSi: "ජෛව පද්ධති ඉංජිනේරු යන්ත්‍රෝපකරණ සහ උපකරණ", nameEn: "Bio-systems Engineering Machinery" },
+                                { id: "bst13", nameSi: "හරිතගෘහ තාක්ෂණය (Greenhouse Technology) සහ ආරක්ෂිත වගාව", nameEn: "Greenhouse Technology" },
+                                { id: "bst14", nameSi: "ජල කළමනාකරණය සහ වාරි තාක්ෂණය", nameEn: "Water Management & Irrigation" },
+                                { id: "bst15", nameSi: "ජෛව බලශක්තිය සහ අලුත් කළ හැකි බලශක්ති මූලාශ්‍ර", nameEn: "Bioenergy & Renewable Energy" },
+                                { id: "bst16", nameSi: "ජෛව තාක්ෂණවේදයේ මූලික යෙදුම්", nameEn: "Basic Applications of Biotechnology" },
+                                { id: "bst17", nameSi: "තාක්ෂණික ව්‍යාපෘති කළමනාකරණය සහ ගුණාත්මකභාවය පාලනය", nameEn: "Tech Project Management & Quality Control" }
+                            ]
+                        }
+                    },
+                    "SFT": {
+                        titleSi: "විද්‍යාව සඳහා තාක්ෂණවේදය (SFT)", titleEn: "Science for Technology",
+                        grades: {
+                            "Grade 12": [
+                                { id: "sft1", nameSi: "මිනුම් සහ ඒකක (Measurements and Units)", nameEn: "Measurements and Units" },
+                                { id: "sft2", nameSi: "යාන්ත්‍ර විද්‍යාව (ගුරුත්වාකර්ෂණය, බල සහ චලිතය)", nameEn: "Mechanics" },
+                                { id: "sft3", nameSi: "ද්‍රව්‍යවල යාන්ත්‍රික ගුණ (Mechanical Properties of Matter)", nameEn: "Mechanical Properties of Matter" },
+                                { id: "sft4", nameSi: "තරංග සහ දෝලන (Waves and Oscillations)", nameEn: "Waves and Oscillations" },
+                                { id: "sft5", nameSi: "තාප විද්‍යාව (Thermodynamics)", nameEn: "Thermodynamics" },
+                                { id: "sft6", nameSi: "විදුලි ක්ෂේත්‍ර සහ ධාරා විදුලිය", nameEn: "Electric Fields and Current Electricity" },
+                                { id: "sft7", nameSi: "ඉලෙක්ට්‍රොනික විද්‍යාව (Electronics)", nameEn: "Electronics" },
+                                { id: "sft8", nameSi: "පරමාණුක ව්‍යුහය සහ ආවර්තිතා වගුව", nameEn: "Atomic Structure and Periodic Table" }
+                            ],
+                            "Grade 13": [
+                                { id: "sft9", nameSi: "රසායනික බැඳීම් සහ ද්‍රව්‍යවල හැසිරීම", nameEn: "Chemical Bonding and Material Behavior" },
+                                { id: "sft10", nameSi: "ද්‍රව්‍ය, සාන්ද්‍රණය සහ විද්‍යුත් රසායනය", nameEn: "Solutions, Concentration & Electrochemistry" },
+                                { id: "sft11", nameSi: "කාබනික රසායනය (Organic Chemistry)", nameEn: "Organic Chemistry" },
+                                { id: "sft12", nameSi: "දෘශ්‍ය විද්‍යාව (Optics) සහ ආලෝක තාක්ෂණය", nameEn: "Optics and Light Technology" },
+                                { id: "sft13", nameSi: "කිරණශීලීතාව සහ පරමාණුක භෞතික විද්‍යාව", nameEn: "Radioactivity & Atomic Physics" },
+                                { id: "sft14", nameSi: "පාරිසරික විද්‍යාව සහ දූෂණ පාලනය", nameEn: "Environmental Science & Pollution Control" },
+                                { id: "sft15", nameSi: "පොලිමර් සහ නව ද්‍රව්‍ය (Polymers and Advanced Materials)", nameEn: "Polymers and Advanced Materials" },
+                                { id: "sft16", nameSi: "ආහාර විද්‍යාව සහ රසායනය තාක්ෂණයේදී", nameEn: "Food Science and Chemistry in Tech" }
+                            ]
+                        }
+                    },
+                    "ICT": {
+                        titleSi: "තොරතුරු සහ සන්නිවේදන තාක්ෂණය (ICT)", titleEn: "ICT",
+                        grades: {
+                            "Grade 12": [
+                                { id: "ict1", nameSi: "පරිගණක පද්ධතියක පරිණාමය සහ මූලික අංග (Evolution of Computers)", nameEn: "Evolution of Computers" },
+                                { id: "ict2", nameSi: "දත්ත නිරූපණය සහ සංඛ්‍යා පද්ධති (Data Representation)", nameEn: "Data Representation & Number Systems" },
+                                { id: "ict3", nameSi: "දත්ත සන්නිවේදනය සහ ජාලකරණය (Networking)", nameEn: "Data Communication and Networking" },
+                                { id: "ict4", nameSi: "පද්ධති විශ්ලේෂණය සහ නිර්මාණය (System Analysis & Design)", nameEn: "System Analysis and Design" },
+                                { id: "ict5", nameSi: "දත්ත සමුදා කළමනාකරණ පද්ධති (DBMS)", nameEn: "Database Management Systems (DBMS)" },
+                                { id: "ict6", nameSi: "වෙබ් නිර්මාණකරණය (HTML, CSS, JavaScript)", nameEn: "Web Design (HTML, CSS, JS)" }
+                            ],
+                            "Grade 13": [
+                                { id: "ict7", nameSi: "ක්‍රමලේඛනය (Programming Concepts - Python)", nameEn: "Programming Concepts (Python)" },
+                                { id: "ict8", nameSi: "මෘදුකාංග ඉංජිනේරු විද්‍යාව (Software Engineering)", nameEn: "Software Engineering" },
+                                { id: "ict9", nameSi: "අන්තර්ජාල තාක්ෂණය සහ නැගී එන තාක්ෂණයන් (IoT, AI, Cloud)", nameEn: "Internet Tech & Emerging Tech (IoT, AI)" },
+                                { id: "ict10", nameSi: "තොරතුරු ආරක්ෂණය සහ සදාචාරය (Information Security and Ethics)", nameEn: "Information Security and Ethics" }
+                            ]
+                        }
+                    }
+                }
+            },
+            "Arts": {
+                titleSi: "කලා අංශය (කලා විෂයයන්)", titleEn: "Arts Stream", color: "rose", icon: "🎨",
+                subjects: {
+                    "Political Science": {
+                        titleSi: "දේශපාලන විද්‍යාව (Political Science)", titleEn: "Political Science",
+                        grades: {
+                            "Grade 12": [
+                                { id: "pol1", nameSi: "දේශපාලන විද්‍යාවට හැඳින්වීම සහ මූලික සංකල්ප", nameEn: "Introduction to Political Science" },
+                                { id: "pol2", nameSi: "රාජ්‍යය, ස්වෛරීභාවය සහ බලය", nameEn: "State, Sovereignty and Power" },
+                                { id: "pol3", nameSi: "දේශපාලන මතවාද (Political Ideologies)", nameEn: "Political Ideologies" },
+                                { id: "pol4", nameSi: "ආණ්ඩුක්‍රම ව්‍යුහ සහ ක්‍රමවේද", nameEn: "Constitutions and Systems of Government" }
+                            ],
+                            "Grade 13": [
+                                { id: "pol5", nameSi: "ශ්‍රී ලංකාවේ දේශපාලන ඉතිහාසය සහ ආණ්ඩුක්‍රම", nameEn: "Political History & Constitutions of Sri Lanka" },
+                                { id: "pol6", nameSi: "ජාත්‍යන්තර සම්බන්ධතා සහ විදේශ ප්‍රතිපත්ති", nameEn: "International Relations & Foreign Policy" },
+                                { id: "pol7", nameSi: "ප්‍රජාතන්ත්‍රවාදය, මැතිවරණ සහ දේශපාලන පක්ෂ", nameEn: "Democracy, Elections and Political Parties" },
+                                { id: "pol8", nameSi: "වත්මන් ගෝලීය දේශපාලන ප්‍රවණතා", nameEn: "Contemporary Global Political Trends" }
+                            ]
+                        }
+                    },
+                    "Geography": {
+                        titleSi: "භූගෝල විද්‍යාව (Geography)", titleEn: "Geography",
+                        grades: {
+                            "Grade 12": [
+                                { id: "geo1", nameSi: "භූගෝල විද්‍යාවට හැඳින්වීම සහ භෞතික භූගෝල විද්‍යාව (Physical Geography)", nameEn: "Physical Geography" },
+                                { id: "geo2", nameSi: "කාලගුණය සහ දේශගුණය (Climatology)", nameEn: "Climatology" },
+                                { id: "geo3", nameSi: "ජල විද්‍යාව සහ සාගර විද්‍යාව (Hydrology and Oceanography)", nameEn: "Hydrology and Oceanography" },
+                                { id: "geo4", nameSi: "ජීව භූගෝල විද්‍යාව සහ පරිසරය (Biogeography and Environment)", nameEn: "Biogeography and Environment" }
+                            ],
+                            "Grade 13": [
+                                { id: "geo5", nameSi: "ජනගහන භූගෝල විද්‍යාව (Population Geography)", nameEn: "Population Geography" },
+                                { id: "geo6", nameSi: "ජනාවාස භූගෝල විද්‍යාව (Settlement Geography)", nameEn: "Settlement Geography" },
+                                { id: "geo7", nameSi: "ආර්ථික භූගෝල විද්‍යාව (Economic Geography - Agriculture, Industry, Transport)", nameEn: "Economic Geography" },
+                                { id: "geo8", nameSi: "ශ්‍රී ලංකාවේ භූගෝලීය ලක්ෂණ සහ ප්‍රාදේශීය සංවර්ධනය", nameEn: "Geography of Sri Lanka" },
+                                { id: "geo9", nameSi: "අද කාලීන පාරිසරික ගැටලු සහ කළමනාකරණය", nameEn: "Environmental Issues and Management" }
+                            ]
+                        }
+                    },
+                    "Logic": {
+                        titleSi: "තර්ක ශාස්ත්‍රය හා විද්‍යා ක්‍රමය (Logic and Scientific Method)", titleEn: "Logic and Scientific Method",
+                        grades: {
+                            "Grade 12": [
+                                { id: "log1", nameSi: "තර්ක ශාස්ත්‍රයට හැඳින්වීම සහ භාෂාවේ කාර්යයන්", nameEn: "Introduction to Logic" },
+                                { id: "log2", nameSi: "නීගමන තර්ක ශාස්ත්‍රය - පද සහ ප්‍රස්තුත (Terms and Propositions)", nameEn: "Terms and Propositions" },
+                                { id: "log3", nameSi: "නීගමන තර්ක ශාස්ත්‍රය - නිගමන ක්‍රම සහ යුක්ති (Syllogisms)", nameEn: "Syllogisms" },
+                                { id: "log4", nameSi: "සාම්ප්‍රදායික තර්ක ශාස්ත්‍රය සහ සත්‍යතා වගු (Truth Tables)", nameEn: "Truth Tables" }
+                            ],
+                            "Grade 13": [
+                                { id: "log5", nameSi: "ආගමන තර්ක ශාස්ත්‍රය සහ විද්‍යාත්මක ක්‍රමය (Inductive Logic)", nameEn: "Inductive Logic and Scientific Method" },
+                                { id: "log6", nameSi: "උපකල්පන සහ විද්‍යාත්මක පැහැදිලි කිරීම (Hypotheses and Explanation)", nameEn: "Hypotheses and Explanation" },
+                                { id: "log7", nameSi: "සම්භාවිතාව සහ සංඛ්‍යානමය ක්‍රම තර්කනයෙහිදී", nameEn: "Probability & Statistics in Logic" },
+                                { id: "log8", nameSi: "වැරදි තර්ක (Fallacies) සහ විචාරාත්මක චින්තනය (Critical Thinking)", nameEn: "Fallacies and Critical Thinking" }
+                            ]
+                        }
+                    },
+                    "French": {
+                        titleSi: "ප්‍රංශ භාෂාව (French)", titleEn: "French Language",
+                        grades: {
+                            "Grade 12 & 13": [
+                                { id: "fre1", nameSi: "මූලික ව්‍යාකරණ සහ වාක්‍ය රටා (Grammar - Tenses: Présent, Passé Composé, Futur)", nameEn: "Grammar and Tenses" },
+                                { id: "fre2", nameSi: "සන්නිවේදන කුසලතා (Communication / Dialogues)", nameEn: "Communication & Dialogues" },
+                                { id: "fre3", nameSi: "කියවීම සහ අවබෝධය (Reading Comprehension)", nameEn: "Reading Comprehension" },
+                                { id: "fre4", nameSi: "ප්‍රංශ සාහිත්‍යය සහ සංස්කෘතිය පිළිබඳ හැඳින්වීම", nameEn: "French Literature and Culture" },
+                                { id: "fre5", nameSi: "රචනා ලිවීම සහ ලිපි හුවමාරුව (Composition and Letter Writing)", nameEn: "Composition and Letter Writing" }
+                            ]
+                        }
+                    },
+                    "English Literature": {
+                        titleSi: "ඉංග්‍රීසි සාහිත්‍යය (English Literature)", titleEn: "English Literature",
+                        grades: {
+                            "Grade 12 & 13": [
+                                { id: "eng1", nameSi: "නාට්‍ය (Drama / Plays - කෘති කිහිපයක් අධ්‍යයනය කිරීම)", nameEn: "Drama / Plays" },
+                                { id: "eng2", nameSi: "නවකතා (Novels)", nameEn: "Novels" },
+                                { id: "eng3", nameSi: "කෙටිකතා (Short Stories එකතුව)", nameEn: "Short Stories" },
+                                { id: "eng4", nameSi: "පද්‍ය/කවි සංග්‍රහය (Poetry Anthology)", nameEn: "Poetry Anthology" },
+                                { id: "eng5", nameSi: "සාහිත්‍ය විචාරය සහ නිර්මාණශීලී ලිවීම (Literary Criticism)", nameEn: "Literary Criticism & Creative Writing" }
+                            ]
+                        }
+                    },
+                    "Media": {
+                        titleSi: "සන්නිවේදනය සහ මාධ්‍ය අධ්‍යයනය (Media Studies)", titleEn: "Media Studies",
+                        grades: {
+                            "Grade 12": [
+                                { id: "med1", nameSi: "සන්නිවේදන මූලධර්ම සහ සංකල්ප (Principles and Concepts of Communication)", nameEn: "Principles of Communication" },
+                                { id: "med2", nameSi: "මාධ්‍ය පරිණාමය සහ ඉතිහාසය (History and Evolution of Media)", nameEn: "History and Evolution of Media" },
+                                { id: "med3", nameSi: "මුද්‍රිත මාධ්‍ය (Print Media - Newspapers, Magazines)", nameEn: "Print Media" },
+                                { id: "med4", nameSi: "විද්‍යුත් මාධ්‍ය - ගුවන් විදුලිය (Radio Broadcasting)", nameEn: "Radio Broadcasting" }
+                            ],
+                            "Grade 13": [
+                                { id: "med5", nameSi: "රූපවාහිනී මාධ්‍ය සහ සිනමාව (Television and Cinema)", nameEn: "Television and Cinema" },
+                                { id: "med6", nameSi: "නව මාධ්‍ය සහ අන්තර්ජාලය (New Media and Cyber Culture)", nameEn: "New Media and Cyber Culture" },
+                                { id: "med7", nameSi: "ජනමාධ්‍ය ආචාරධර්ම සහ නීති රීති (Media Ethics and Laws)", nameEn: "Media Ethics and Laws" },
+                                { id: "med8", nameSi: "දැන්වීම්කරණය සහ මහජන සම්බන්ධතා (Advertising and Public Relations)", nameEn: "Advertising and PR" }
+                            ]
+                        }
+                    },
+                    "GRC": {
+                        titleSi: "ග්‍රීක හා රෝමානු සංස්කෘතිය (GRC)", titleEn: "Greek & Roman Culture",
+                        grades: {
+                            "Grade 12 & 13": [
+                                { id: "grc1", nameSi: "ග්‍රීක සහ රෝමානු ඉතිහාසය හා පුරාවිද්‍යාව (History and Archaeology)", nameEn: "History and Archaeology" },
+                                { id: "grc2", nameSi: "සම්භාව්‍ය පුරාවෘත්ත සහ මිථ්‍යා කථා (Classical Mythology)", nameEn: "Classical Mythology" },
+                                { id: "grc3", nameSi: "ග්‍රීක සහ රෝමානු නාට්‍ය සහ සාහිත්‍යය (Drama and Literature)", nameEn: "Drama and Literature" },
+                                { id: "grc4", nameSi: "දර්ශනවාදය සහ කලාව (Philosophy and Art/Architecture)", nameEn: "Philosophy and Art" }
+                            ]
+                        }
+                    }
+                }
+            }
+        };
+
+        let navigationState = {
+            step: 'streams',
+            streamKey: null,
+            subjectKey: null
+        };
+
+        let isSinhala = true;
+        let isDark = true;
+
+        let questionBanks = {};
+        let quizCooldowns = {}; 
+        let userAnswers = {};
+        let quizSubmitted = false;
+
+        function render() {
+            const container = document.getElementById('content-container');
+            const banner = document.getElementById('banner-box');
+            const backBtn = document.getElementById('back-btn');
+            const heading = document.getElementById('section-heading');
+            
+            container.innerHTML = '';
+
+            if (navigationState.step === 'streams') {
+                banner.classList.remove('hidden');
+                backBtn.classList.add('hidden');
+                heading.innerText = isSinhala ? "විෂය ධාරා තෝරන්න (Select Stream)" : "Select Stream";
+
+                let grid = document.createElement('div');
+                grid.className = "grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4";
+
+                for (const [key, stream] of Object.entries(database)) {
+                    let card = document.createElement('div');
+                    card.onclick = () => selectStream(key);
+                    card.className = `stream-card ${isDark ? 'glass-dark' : 'glass-light'} p-5 md:p-6 rounded-3xl hover:border-${stream.color}-400 transition-all cursor-pointer group relative overflow-hidden ${key === 'Arts' ? 'md:col-span-2' : ''}`;
+                    
+                    let subNames = Object.values(stream.subjects).slice(0, 4).map(s => isSinhala ? s.titleSi : s.titleEn).join(' • ');
+
+                    card.innerHTML = `
+                        <div class="absolute top-0 left-0 w-1.5 h-full bg-${stream.color}-500 shadow-[0_0_15px_rgba(6,182,212,0.9)]"></div>
+                        <div class="flex justify-between items-center mb-2.5 md:mb-3">
+                            <span class="text-xl md:text-2xl">${stream.icon}</span>
+                            <span class="text-xs px-3 py-1 md:px-3.5 md:py-1.5 rounded-full bg-${stream.color}-500/15 text-${stream.color}-600 dark:text-${stream.color}-300 border border-${stream.color}-400/40 font-semibold neon-3d-btn">${key}</span>
+                        </div>
+                        <h3 class="text-base md:text-lg font-bold text-slate-900 dark:text-white group-hover:text-${stream.color}-500 dark:group-hover:text-${stream.color}-300 transition">${isSinhala ? stream.titleSi : stream.titleEn}</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1.5 md:mt-2 line-clamp-1">${subNames}</p>
+                    `;
+                    grid.appendChild(card);
+                }
+                container.appendChild(grid);
+
+            } else if (navigationState.step === 'subjects') {
+                banner.classList.add('hidden');
+                backBtn.classList.remove('hidden');
+                const stream = database[navigationState.streamKey];
+                heading.innerText = (isSinhala ? stream.titleSi : stream.titleEn) + " - විෂයයන් තෝරන්න";
+
+                let grid = document.createElement('div');
+                grid.className = "grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4";
+
+                for (const [subKey, sub] of Object.entries(stream.subjects)) {
+                    let card = document.createElement('div');
+                    card.onclick = () => selectSubject(subKey);
+                    card.className = `stream-card ${isDark ? 'glass-dark' : 'glass-light'} p-5 md:p-6 rounded-3xl hover:border-cyan-400 transition-all cursor-pointer group relative overflow-hidden`;
+                    
+                    card.innerHTML = `
+                        <div class="absolute top-0 left-0 w-1.5 h-full bg-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.9)]"></div>
+                        <div class="flex justify-between items-center mb-2.5 md:mb-3">
+                            <span class="text-xl md:text-2xl">📖</span>
+                            <span class="text-xs px-3 py-1 md:px-3.5 md:py-1.5 rounded-full bg-cyan-500/15 text-cyan-700 dark:text-cyan-300 border border-cyan-400/40 font-semibold neon-3d-btn">2026 Syllabus</span>
+                        </div>
+                        <h3 class="text-base md:text-lg font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition">${isSinhala ? sub.titleSi : sub.titleEn}</h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 mt-1.5 md:mt-2">12 සහ 13 ශ්‍රේණි පාඩම් මාලාව</p>
+                    `;
+                    grid.appendChild(card);
+                }
+                container.appendChild(grid);
+
+            } else if (navigationState.step === 'grades-units') {
+                banner.classList.add('hidden');
+                backBtn.classList.remove('hidden');
+                const sub = database[navigationState.streamKey].subjects[navigationState.subjectKey];
+                heading.innerText = (isSinhala ? sub.titleSi : sub.titleEn) + " - පාඩම් මාලාව";
+
+                let wrapper = document.createElement('div');
+                wrapper.className = "space-y-4 md:space-y-6";
+
+                for (const [gradeName, units] of Object.entries(sub.grades)) {
+                    let gradeBox = document.createElement('div');
+                    gradeBox.className = `${isDark ? 'glass-dark' : 'glass-light'} p-4 md:p-6 rounded-3xl shadow-xl space-y-3 md:space-y-4`;
+                    
+                    let gradeTitle = document.createElement('h3');
+                    gradeTitle.className = "text-sm md:text-md font-bold text-cyan-600 dark:text-cyan-400 border-b border-slate-300/40 dark:border-white/10 pb-2 drop-shadow-sm";
+                    gradeTitle.innerText = gradeName;
+                    gradeBox.appendChild(gradeTitle);
+
+                    let unitsGrid = document.createElement('div');
+                    unitsGrid.className = "space-y-2.5 md:space-y-3";
+
+                    units.forEach(unit => {
+                        const unitKey = `${navigationState.streamKey}_${navigationState.subjectKey}_${unit.id}`;
+                        const isGenerated = questionBanks[unitKey] && questionBanks[unitKey].questions && questionBanks[unitKey].questions.length === 20;
+
+                        let unitCard = document.createElement('div');
+                        unitCard.className = "p-3.5 md:p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex justify-between items-center transition hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer gap-2";
+                        
+                        unitCard.onclick = () => loadQuizBatch(isSinhala ? sub.titleSi : sub.titleEn, isSinhala ? unit.nameSi : unit.nameEn, unitKey);
+
+                        unitCard.innerHTML = `
+                            <div>
+                                <span class="text-xs md:text-sm font-medium text-slate-800 dark:text-white leading-snug">${isSinhala ? unit.nameSi : unit.nameEn}</span>
+                                <p class="text-[10px] text-cyan-500 mt-0.5">${isGenerated ? 'ප්‍රශ්න 20 සූදානම් කර ඇත' : 'ප්‍රශ්න 20ක් එකවර ජනනය කරන්න'}</p>
+                            </div>
+                            <span class="text-[11px] md:text-xs px-2.5 py-1 md:px-3 md:py-1.5 rounded-full bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 font-semibold border border-cyan-400/40 neon-3d-btn whitespace-nowrap">${isGenerated ? 'ප්‍රශ්න අරඹන්න →' : 'ප්‍රශ්න 20ක් ජනනය කරන්න →'}</span>
+                        `;
+                        unitsGrid.appendChild(unitCard);
+                    });
+
+                    gradeBox.appendChild(unitsGrid);
+                    wrapper.appendChild(gradeBox);
+                }
+                container.appendChild(wrapper);
+            }
+        }
+
+        function selectStream(streamKey) {
+            navigationState.step = 'subjects';
+            navigationState.streamKey = streamKey;
+            render();
+        }
+
+        function selectSubject(subKey) {
+            navigationState.step = 'grades-units';
+            navigationState.subjectKey = subKey;
+            render();
+        }
+
+        function goBack() {
+            if (navigationState.step === 'subjects') {
+                navigationState.step = 'streams';
+            } else if (navigationState.step === 'grades-units') {
+                navigationState.step = 'subjects';
+            }
+            render();
+        }
+
+        function goHome() {
+            navigationState = { step: 'streams', streamKey: null, subjectKey: null };
+            render();
+        }
+
+        function toggleLanguage() {
+            isSinhala = !isSinhala;
+            document.getElementById('lang-btn').innerText = isSinhala ? "සිංහල / ENG" : "ENG / සිංහල";
+            render();
+        }
+
+        function toggleTheme() {
+            isDark = !isDark;
+            const htmlRoot = document.getElementById('html-root');
+            const bodyBg = document.getElementById('body-bg');
+            const navbar = document.getElementById('navbar');
+            const bannerBox = document.getElementById('banner-box');
+            const footer = document.getElementById('footer');
+
+            if (isDark) {
+                htmlRoot.classList.add('dark');
+                bodyBg.className = "bg-dark-mesh text-slate-100 min-h-screen flex flex-col justify-between transition-colors duration-500 no-select";
+                navbar.className = "p-3 md:p-4 px-4 md:px-6 glass-dark border-b border-white/10 flex justify-between items-center sticky top-0 z-50 transition-colors duration-500";
+                bannerBox.className = "glass-dark p-5 md:p-8 rounded-3xl relative overflow-hidden shadow-2xl transition-colors duration-500";
+                footer.className = "p-4 text-center text-xs text-slate-400 glass-dark border-t border-white/10 mt-6 relative z-10 transition-colors duration-500";
+            } else {
+                htmlRoot.classList.remove('dark');
+                bodyBg.className = "bg-light-mesh text-slate-900 min-h-screen flex flex-col justify-between transition-colors duration-500 no-select";
+                navbar.className = "p-3 md:p-4 px-4 md:px-6 glass-light border-b border-slate-200 flex justify-between items-center sticky top-0 z-50 transition-colors duration-500";
+                bannerBox.className = "glass-light p-5 md:p-8 rounded-3xl relative overflow-hidden shadow-2xl transition-colors duration-500";
+                footer.className = "p-4 text-center text-xs text-slate-500 glass-light border-t border-slate-200 mt-6 relative z-10 transition-colors duration-500";
+            }
+            render();
+        }
+
+        render();
+
+        async function loadQuizBatch(subjectName, unitName, unitKey, forceRegenerate = false) {
+            const now = Date.now();
+            const cooldownTime = 20 * 60 * 60 * 1000; // පැය 20ක කාල සීමාව
+
+            if (!forceRegenerate && questionBanks[unitKey] && questionBanks[unitKey].questions && questionBanks[unitKey].questions.length === 20) {
+                const lastGenTime = quizCooldowns[unitKey] || 0;
+                const timeLeft = cooldownTime - (now - lastGenTime);
+
+                if (timeLeft > 0) {
+                    const hoursLeft = Math.floor(timeLeft / (1000 * 60 * 60));
+                    const minsLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    
+                    renderQuizUI(subjectName, unitName, questionBanks[unitKey], unitKey, `මෙම පාඩමට අලුත් ප්‍රශ්න ජනනය කිරීමට තව පැය ${hoursLeft} ක් සහ මිනිත්තු ${minsLeft} ක් රැඳී සිටිය යුතුය.`);
+                    return;
+                }
+            }
+
+            const container = document.getElementById('content-container');
+
+            container.innerHTML = `
+                <div class="${isDark ? 'glass-dark' : 'glass-light'} p-6 md:p-8 rounded-3xl text-center space-y-4 shadow-2xl">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-cyan-400 border-t-transparent"></div>
+                    <p class="text-xs md:text-sm text-cyan-300 font-semibold">"${unitName}" පාඩමට අදාළ ප්‍රශ්න 20ක් සහ කෙටි සාරාංශයක් එකවර සකස් කරමින් පවතී. කරුණාකර මොහොතක් රැඳී සිටින්න...</p>
+                </div>
+            `;
+
+            const GEMINI_API_KEY = "AQ.Ab8RN6J03O-CIz283yN1eCn3AdriatEoKm__14tQTV7ANfwbAw";
+            const GEMINI_MODEL = "gemini-3.5-flash-lite";
+            const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+
+            const langInstruction = isSinhala 
+                ? "សාරාංශය, ප්‍රශ්න, පිළිතුරු විකල්ප සහ පැහැදිලි කිරීම් සම්පූර්ණයෙන්ම සිංහල භාෂාවෙන් (Sinhala) පමණක් ලියන්න." 
+                : "Write the summary, questions, options, and explanations entirely in English language only.";
+
+            const prompt = `ඔබ ශ්‍රී ලංකාවේ A/L ප්‍රවීණ ගුරුවරයෙකි.
+විෂය: ${subjectName}
+පාඩම: ${unitName}
+
+මෙම පාඩමට අදාළව:
+1. පාඩමේ ප්‍රධාන සංකල්ප ඇතුළත් කෙටි සාරාංශයක් (Short Summary) ඡේද කිහිපයකින් සකස් කරන්න.
+2. උසස් පෙළ මට්ටම බහුවරණ ප්‍රශ්න හරියටම 20ක් (20 Multiple Choice Questions) සාදන්න. (සෑම ප්‍රශ්නයකටම පිළිතුරු විකල්ප 5ක් A, B, C, D, E ලබා දෙන්න. නිවැරදි පිළිතුර සම්පූර්ණයෙන්ම අහඹු ලෙස (randomly) වෙනස් වන සේ විකල්ප සකස් කරන්න).
+
+${langInstruction}
+
+IMPORTANT: You must return ONLY a valid raw JSON object. Do NOT wrap the JSON inside markdown blocks (like \`\`\`json). No trailing semicolons or unquoted properties. 
+
+Structure must strictly follow this format:
+{
+  "summary": "Short summary text here...",
+  "questions": [
+    {
+      "question": "Question text here?",
+      "options": ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"],
+      "answerIndex": 2,
+      "explanation": "Explanation text here."
+    }
+  ]
+}`;
+
+            try {
+                const response = await fetch(GEMINI_ENDPOINT, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        contents: [
+                            {
+                                parts: [
+                                    { text: "You are an expert Sri Lankan A/L teacher. Output strictly raw JSON object without markdown blocks." },
+                                    { text: prompt }
+                                ]
+                            }
+                        ]
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error?.message || "Gemini API request failed");
+                }
+
+                let aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                if (!aiText) {
+                    throw new Error("AI response එක හිස්.");
+                }
+
+                aiText = aiText.trim();
+                aiText = aiText.replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/\s*```$/i, "").trim();
+                
+                let parsedData = null;
+                try {
+                    parsedData = JSON.parse(aiText);
+                } catch (e1) {
+                    try {
+                        const firstBracket = aiText.indexOf('{');
+                        const lastBracket = aiText.lastIndexOf('}');
+                        if (firstBracket !== -1 && lastBracket !== -1 && lastBracket > firstBracket) {
+                            let jsonString = aiText.substring(firstBracket, lastBracket + 1);
+                            jsonString = jsonString.replace(/[\u0000-\u001F]+/g, " ");
+                            parsedData = JSON.parse(jsonString);
+                        } else {
+                            throw new Error(e1.message);
+                        }
+                    } catch (e2) {
+                        console.error("Failed AI text:", aiText);
+                        throw new Error("JSON Parse දෝෂයකි: " + e2.message);
+                    }
+                }
+
+                if (!parsedData || !Array.isArray(parsedData.questions) || parsedData.questions.length === 0) {
+                    throw new Error("ප්‍රශ්න ලැයිස්තුව හෝ සාරාංශය නිවැරදි ආකාරයෙන් ලැබී නැත.");
+                }
+
+                parsedData.questions = parsedData.questions.slice(0, 20);
+                questionBanks[unitKey] = parsedData;
+                quizCooldowns[unitKey] = Date.now(); 
+
+                renderQuizUI(subjectName, unitName, parsedData, unitKey);
+
+            } catch (error) {
+                console.error("Quiz Error:", error);
+                container.innerHTML = `
+                    <div class="${isDark ? 'glass-dark' : 'glass-light'} p-6 rounded-3xl text-center space-y-3 shadow-2xl">
+                        <p class="text-xs md:text-sm text-rose-400 font-semibold">ප්‍රශ්න 20 සහ සාරාංශය ජනනය කිරීමේදී දෝෂයක් සිදු විය.</p>
+                        <p class="text-xs text-slate-400 break-words">${error.message}</p>
+                        <button onclick="render()" class="px-4 py-2 rounded-full bg-white/10 text-xs font-semibold hover:bg-white/25 transition neon-3d-btn mt-2">
+                            ආපසු යන්න
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function renderQuizUI(subjectName, unitName, dataObj, unitKey, cooldownMessage = "") {
+            const container = document.getElementById('content-container');
+            const summaryText = dataObj.summary || "සාරාංශයක් නොමැත.";
+            const questions = dataObj.questions || [];
+            const totalInBank = questions.length;
+            
+            userAnswers = {};
+            quizSubmitted = false;
+            
+            let html = `
+                <div class="${isDark ? 'glass-dark' : 'glass-light'} p-5 md:p-8 rounded-3xl space-y-6 shadow-2xl">
+                    <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                        <div>
+                            <h3 class="text-base md:text-lg font-bold text-cyan-400">🤖 AI පාඩම් සාරාංශය හා Quiz අභියෝගය</h3>
+                            <p class="text-xs text-slate-400 mt-1">${subjectName} - ${unitName}</p>
+                        </div>
+                        <button onclick="render()" class="px-3.5 py-1.5 rounded-full bg-white/10 text-xs font-semibold hover:bg-white/20 transition">
+                            ← ආපසු පාඩම් වෙත
+                        </button>
+                    </div>
+            `;
+
+            if (cooldownMessage) {
+                html += `
+                    <div class="p-3.5 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs text-center font-medium">
+                        ⚠️ ${cooldownMessage}
+                    </div>
+                `;
+            }
+
+            html += `
+                    <!-- Summary Box -->
+                    <div class="p-4 md:p-5 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 space-y-2">
+                        <h4 class="text-xs md:text-sm font-bold text-cyan-300">📖 පාඩමේ කෙටි සාරාංශය (Quick Summary)</h4>
+                        <p class="text-xs md:text-sm text-slate-200 leading-relaxed whitespace-pre-line">${summaryText}</p>
+                    </div>
+
+                    <div class="border-t border-white/10 pt-4 flex justify-between items-center">
+                        <h4 class="text-xs md:text-sm font-bold text-slate-200">ප්‍රශ්නාවලිය (ප්‍රශ්න: ${totalInBank})</h4>
+                        <button onclick="loadQuizBatch('${subjectName}', '${unitName}', '${unitKey}', true)" class="text-[11px] px-3 py-1.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 hover:bg-cyan-500/30 transition neon-3d-btn font-semibold">
+                            🔄 අලුත් ප්‍රශ්න ඉල්ලන්න (Regenerate)
+                        </button>
+                    </div>
+
+                    <div class="space-y-6" id="quiz-questions-list">
+            `;
+
+            questions.forEach((q, qIndex) => {
+                const letters = ['A', 'B', 'C', 'D', 'E'];
+                html += `
+                    <div class="p-4 md:p-5 rounded-2xl bg-black/20 dark:bg-white/5 border border-white/10 space-y-3" id="q-box-${qIndex}">
+                        <p class="text-xs md:text-sm font-bold text-slate-100">${qIndex + 1}. ${q.question}</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+                `;
+
+                q.options.forEach((opt, optIndex) => {
+                    html += `
+                        <button onclick="checkAnswer(${qIndex}, ${optIndex}, ${q.answerIndex}, \`${q.explanation.replace(/`/g, '\\`')}\`, ${questions.length})" 
+                            id="btn-${qIndex}-${optIndex}"
+                            class="text-left text-xs md:text-sm p-3 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 transition flex items-start gap-2.5">
+                            <span class="font-bold text-cyan-400">${letters[optIndex]}.</span>
+                            <span class="text-slate-200">${opt}</span>
+                        </button>
+                    `;
+                });
+
+                html += `
+                        </div>
+                        <div id="feedback-${qIndex}" class="hidden mt-3 p-3 rounded-xl text-xs space-y-1 border"></div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                    <div id="quiz-summary-container"></div>
+                    <div class="flex flex-col md:flex-row gap-3 pt-4">
+                        <button onclick="render()" class="flex-1 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs md:text-sm border border-white/20 transition">
+                            වෙනත් පාඩමක් තෝරන්න
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+            window.currentQuizData = questions;
+        }
+
+        function checkAnswer(qIndex, selectedOpt, correctOpt, explanation, totalQuestions) {
+            if (quizSubmitted && userAnswers[qIndex] !== undefined) return;
+
+            userAnswers[qIndex] = selectedOpt;
+            const letters = ['A', 'B', 'C', 'D', 'E'];
+
+            for (let i = 0; i < 5; i++) {
+                const btn = document.getElementById(`btn-${qIndex}-${i}`);
+                if (btn) {
+                    btn.disabled = true;
+                    btn.classList.add('cursor-not-allowed', 'opacity-80');
+                }
+            }
+
+            const selectedBtn = document.getElementById(`btn-${qIndex}-${selectedOpt}`);
+            const feedbackDiv = document.getElementById(`feedback-${qIndex}`);
+
+            if (selectedOpt === correctOpt) {
+                selectedBtn.className = "text-left text-xs md:text-sm p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/50 transition flex items-start gap-2.5";
+                feedbackDiv.className = "mt-3 p-3 rounded-xl text-xs space-y-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 block";
+                feedbackDiv.innerHTML = `<p class="font-bold">✔ නිවැරදියි!</p><p>${explanation}</p>`;
+            } else {
+                selectedBtn.className = "text-left text-xs md:text-sm p-3 rounded-xl bg-rose-500/20 border border-rose-500/50 transition flex items-start gap-2.5";
+                const correctBtn = document.getElementById(`btn-${qIndex}-${correctOpt}`);
+                if (correctBtn) {
+                    correctBtn.className = "text-left text-xs md:text-sm p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/50 transition flex items-start gap-2.5";
+                }
+                feedbackDiv.className = "mt-3 p-3 rounded-xl text-xs space-y-1 bg-rose-500/10 border border-rose-500/30 text-rose-300 block";
+                feedbackDiv.innerHTML = `<p class="font-bold">✖ වැරදියි! නිවැරදි පිළිතුර: ${letters[correctOpt]}</p><p>${explanation}</p>`;
+            }
+
+            if (Object.keys(userAnswers).length === totalQuestions) {
+                showQuizSummary(totalQuestions);
+            }
+        }
+
+        function showQuizSummary(totalQuestions) {
+            quizSubmitted = true;
+            let correctCount = 0;
+            const questions = window.currentQuizData || [];
+
+            if (questions.length > 0) {
+                Object.keys(userAnswers).forEach(idx => {
+                    if (userAnswers[idx] === questions[idx].answerIndex) {
+                        correctCount++;
+                    }
+                });
+            }
+
+            const summaryContainer = document.getElementById('quiz-summary-container');
+            if (summaryContainer) {
+                summaryContainer.innerHTML = `
+                    <div class="p-5 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-center space-y-2 mt-6 animate-pulse">
+                        <h4 class="text-sm md:text-base font-bold text-cyan-300">🎉 ප්‍රශ්නාවලිය අවසන්!</h4>
+                        <p class="text-xs md:text-sm text-slate-200">ඔබ ලබාගත් ලකුණු ප්‍රමාණය: <span class="font-bold text-cyan-400">${correctCount} / ${totalQuestions}</span></p>
+                        <p class="text-xs text-slate-400">සියලුම ප්‍රශ්න සඳහා පිළිතුරු සහ විස්තර ඉහතින් පරීක්ෂා කළ හැක.</p>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
